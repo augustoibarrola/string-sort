@@ -1,7 +1,9 @@
 package com.example.demo;
 
 
-import com.example.demo.util.FileReaderService;
+import java.io.InputStream;
+
+import com.example.demo.service.FileReaderService;
 
 public class StringSorter {
 	
@@ -14,7 +16,10 @@ public class StringSorter {
 	    
 	    fileReader = new FileReaderService();
 	    
-	    fileReader.duh();
+		// Load the desired workbook file
+		InputStream is = getClass().getClassLoader().getResourceAsStream("AUGUSTO_GOODREADS_FINAL.xlsx");
+	    
+	    fileReader.loadWorkbookFromFile(is);
 	    
 	}
 	
