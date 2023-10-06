@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import com.example.demo.util.SortService;
 
 public class StringSorter {
 	
@@ -13,6 +14,10 @@ public class StringSorter {
 	    List<String> testList = Arrays.asList(testArr);        
 	    Collections.sort(testList);
 	    System.out.println(testList);
+	    System.out.println();
+	    SortService sortService = new SortService();
+	    sortService.duh();
+	    
 	}
 	
 
