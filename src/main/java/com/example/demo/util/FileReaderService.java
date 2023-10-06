@@ -10,7 +10,7 @@ import com.aspose.cells.WorksheetCollection;
  * @author augustoibarrola
  *
  */
-public class SortService {
+public class FileReaderService {
 	
 	
 	public void duh() {
