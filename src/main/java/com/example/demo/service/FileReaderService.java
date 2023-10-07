@@ -41,7 +41,7 @@ public class FileReaderService {
 			Worksheet worksheet = worksheets.get(sheetIndex);
 			
 			readerUtil.getSheetName(worksheet);			
-			readerUtil.mapColumnNames(worksheet);
+			readerUtil.mapBookShelves(worksheet);
 			
 		}	
 	}
