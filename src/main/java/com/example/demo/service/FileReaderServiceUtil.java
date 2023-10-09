@@ -32,75 +32,47 @@ public class FileReaderServiceUtil {
 
 
 	public void mapBookShelves(Worksheet worksheet) {
-
-		
-		Map<Integer, String> mappedColumnNames = new HashMap<>();
-		
+				
 		for(int i = 0; i < worksheet.getCells().getMaxColumn(); i++ ) {			
 			
 			String columnName = worksheet.getCells().get(0, i).getStringValue();
 			
-			if(columnName.equals("Bookshelves")) {
-				System.out.println("BOOKSHELF MATCH");
-				getBookShelves(i, worksheet);
-			}
-			
-			
-			//			mappedColumnNames.put(i, columnName);
-			//			System.out.println(i + " :  " + columnName);
+			if(columnName.equals("Bookshelves")) getBookShelves(i, worksheet);
 		}
 
 	}
 	
+	
 	public void getBookShelves(int i, Worksheet worksheet) {
 		
-		HashSet<String> mappedColumnNames = new HashSet<>();
-		List<String> rowBookShelves = new ArrayList<>();
+		HashSet<String> unsortedBookShelves = new HashSet<String>();
+		List<String> bookshelves = new ArrayList<>();		
 		
-		for (int r = 0; r < worksheet.getCells().getMaxRow(); r++) {
-			String columnName = worksheet.getCells().get(r, i).getStringValue();
-			
-//			System.out.println(columnName);
-
-			
-//			rowBookShelves = Arrays.asList(mappedColumnNames.toArray().toString());  
-			
-
-			
-			mappedColumnNames.add(columnName);
-		}
+		for (int r = 0; r < worksheet.getCells().getMaxRow(); r++) Arrays.asList(
+				worksheet.getCells().get(r, i).getStringValue().split(", "))
+				.forEach(unsortedBookShelves::add);
 		
-//		mappedColumnNames.forEach(System.out::println);	
-		HashSet<String> mappedColumnNames2 = new HashSet<>();
+		unsortedBookShelves.forEach(bookshelves::add);
+		Collections.sort(bookshelves);
+		bookshelves.forEach(System.out::println);
 		
-		mappedColumnNames.forEach(bs -> {
-			
-			String[] splitNames = bs.toString().split(",");
-			
-			for(int x = 0; x < splitNames.length; x++ ) {
-				
-				String cleanedName = splitNames[x].strip();
-				
-				mappedColumnNames2.add(cleanedName);	
-			}	
-		});
-		mappedColumnNames2.forEach(System.out::println);	
-		
-		List<String> sortedNames = new ArrayList<String>(mappedColumnNames2);
-		
-		Collections.sort(sortedNames);	
-		
-		sortedNames.forEach(System.out::println);
 	}
+	
+	public void addBookshelvesToWorksheet(List<String> bookshelves) {
+		
+		
+		
+	}
+	
 	
 	
 	
 	
 //	public void 
 	
-//	  8 1. get all the bookshelves in the bookshelves column.
-//	  9 2. get only unique values and delete any duplicates
-//	 10 3. sort those values in alphabetical order
+//	  			8 1. get all the bookshelves in the bookshelves column.
+//	  			9 2. get only unique values and delete any duplicates
+//	 			10 3. sort those values in alphabetical order
 //	 11 4. create new columns at the end of the sheet. as many new columns as the number of unique bookshelves
 //	 12 5. for each row, create array of the cell under the bookshelves column
 //	 13 6. go over each row's bookshelves array and look for each iterated bookshelf in the hashmap
