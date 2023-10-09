@@ -57,10 +57,10 @@ public class FileReaderServiceUtil {
 		bookshelves.forEach(System.out::println);
 		
 	}
-	
-	public void addBookshelvesToWorksheet(List<String> bookshelves) {
-		
-		
+
+	public void writeToWorksheet(Worksheet worksheet) {
+
+		worksheet.getCells().insertColumns(0, 3); // A until U exclusive
 		
 	}
 	

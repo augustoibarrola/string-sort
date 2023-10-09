@@ -16,12 +16,16 @@ public class FileReaderService {
 	
 	
 	public void loadWorkbookFromFile(InputStream is) {
+//	public void loadWorkbookFromFile() {
 		
 		try {
-			Workbook workbook = new Workbook(is);
+			Workbook workbook = new Workbook("AUGUSTO_GOODREADS_FINAL.xlsx");
 			WorksheetCollection worksheets = workbook.getWorksheets();
 			
 			loopThroughWorksheets(worksheets);
+			readerUtil.writeToWorksheet(worksheets.get(0));
+
+			workbook.save("AUGUSTO_GOODREADS_FINAL.xlsx");
 			
 		} catch (Exception e) {
 			
@@ -40,9 +44,9 @@ public class FileReaderService {
 			
 			Worksheet worksheet = worksheets.get(sheetIndex);
 			
-			readerUtil.getSheetName(worksheet);			
-			readerUtil.mapBookShelves(worksheet);
-			
+			readerUtil.getSheetName(worksheet);	
+			System.out.println();
+			readerUtil.mapBookShelves(worksheet);			
 		}	
 	}
 	
