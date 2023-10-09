@@ -11,6 +11,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import com.aspose.cells.Cell;
+import com.aspose.cells.Color;
+import com.aspose.cells.Style;
+import com.aspose.cells.TextAlignmentType;
 import com.aspose.cells.Worksheet;
 
 /**
@@ -32,35 +36,85 @@ public class FileReaderServiceUtil {
 
 
 	public void mapBookShelves(Worksheet worksheet) {
+		
+		int bookshelfIndex;
 				
 		for(int i = 0; i < worksheet.getCells().getMaxColumn(); i++ ) {			
 			
 			String columnName = worksheet.getCells().get(0, i).getStringValue();
 			
-			if(columnName.equals("Bookshelves")) getBookShelves(i, worksheet);
+			if(columnName.equals("Bookshelves")) 
+				{
+				
+					bookshelfIndex = i;
+					getBookShelves(bookshelfIndex, worksheet);
+					break;			
+				}
 		}
 
 	}
 	
 	
-	public void getBookShelves(int i, Worksheet worksheet) {
+	public void getBookShelves(Integer bookshelfIndex, Worksheet worksheet) {
 		
 		HashSet<String> unsortedBookShelves = new HashSet<String>();
 		List<String> bookshelves = new ArrayList<>();		
 		
 		for (int r = 0; r < worksheet.getCells().getMaxRow(); r++) Arrays.asList(
-				worksheet.getCells().get(r, i).getStringValue().split(", "))
+				worksheet.getCells().get(r, bookshelfIndex).getStringValue().split(", "))
 				.forEach(unsortedBookShelves::add);
 		
 		unsortedBookShelves.forEach(bookshelves::add);
 		Collections.sort(bookshelves);
 		bookshelves.forEach(System.out::println);
+		writeToWorksheet(bookshelfIndex, worksheet, bookshelves);
+		markYesPerRow(bookshelfIndex, worksheet, bookshelves.size());
+				
 		
 	}
 
-	public void writeToWorksheet(Worksheet worksheet) {
+	private void markYesPerRow(Integer bookshelfIndex, Worksheet worksheet, int numberOfShelves) {
+		
+		for(int r = 0; r < worksheet.getCells().getMaxRow(); r++) {
+			
+			scanColumnsForMatchingShelf(bookshelfIndex, worksheet, numberOfShelves, r);
+			
+		}
+		
+		
+	}
 
-		worksheet.getCells().insertColumns(0, 3); // A until U exclusive
+	private void scanColumnsForMatchingShelf(Integer bookshelfIndex, Worksheet worksheet, int numberOfShelves, int r) {
+		
+		for(int c = 0; c < numberOfShelves; c++) {
+			
+			int shelfIterator = bookshelfIndex + c;
+			
+			Cell cell = worksheet.getCells().get(r, shelfIterator);
+			
+		}	
+	}
+
+	public void writeToWorksheet(Integer bookshelfIndex, Worksheet worksheet, List<String> bookshelves) {
+
+//		worksheet.getCells().insertColumns(bookshelfIndex, ); // A until U exclusive
+		
+		for(int c = 0; c < bookshelves.size(); c++) {
+			worksheet.getCells().insertColumn((bookshelfIndex + c));
+			Cell cell = worksheet.getCells().get(0, (bookshelfIndex + c));
+			cell.putValue(bookshelves.get(c));
+			
+			////////////////////////////////
+			////////////////////////////////
+			//Set style of a cell
+	         Style style = cell.getStyle();
+	         //Set background color
+	         style.setBackgroundColor(Color.getYellow());
+	         //Set format of a cell
+	         style.getFont().setName("Courier New");
+	         style.setVerticalAlignment(TextAlignmentType.TOP);
+	          cell.setStyle(style);
+		}
 		
 	}
 	

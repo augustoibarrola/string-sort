@@ -19,7 +19,7 @@ public class StringSorter {
 	    fileReader = new FileReaderService();
 	    
 		// Load the desired workbook file
-		InputStream is = getClass().getClassLoader().getResourceAsStream("AUGUSTO_GOODREADS_FINAL.xlsx");
+		InputStream is = getClass().getClassLoader().getResourceAsStream("AUGUSTO_GOODREADS_FINAL_77.xlsx");
 	    
 	    fileReader.loadWorkbookFromFile(is);
 	    

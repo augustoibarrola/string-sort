@@ -19,13 +19,13 @@ public class FileReaderService {
 //	public void loadWorkbookFromFile() {
 		
 		try {
-			Workbook workbook = new Workbook("AUGUSTO_GOODREADS_FINAL.xlsx");
+			Workbook workbook = new Workbook(is);
 			WorksheetCollection worksheets = workbook.getWorksheets();
 			
 			loopThroughWorksheets(worksheets);
-			readerUtil.writeToWorksheet(worksheets.get(0));
+//			readerUtil.writeToWorksheet(worksheets.get(0));
 
-			workbook.save("AUGUSTO_GOODREADS_FINAL.xlsx");
+			workbook.save("AUGUSTO_GOODREADS_FINAL_77.xlsx");
 			
 		} catch (Exception e) {
 			
