@@ -12,7 +12,16 @@ import com.aspose.cells.WorksheetCollection;
  */
 public class FileReaderService {
 	
-	public FileReaderServiceUtil readerUtil = new FileReaderServiceUtil();
+	public FileReaderServiceUtil readerUtil; 
+	
+//	public FileReaderService() {};
+	
+	public FileReaderService() {};
+	
+	public FileReaderService(InputStream is) {
+		FileReaderServiceUtil readerUtil = new FileReaderServiceUtil();
+		
+	};
 	
 	
 	public void loadWorkbookFromFile(InputStream is) {

@@ -14,7 +14,6 @@ public class StringSortApplication {
 		SpringApplication.run(StringSortApplication.class, args);
 		
 		StringSorter stringSort = new StringSorter();
-     
 
 	}
 

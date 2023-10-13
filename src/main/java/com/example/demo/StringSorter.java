@@ -6,10 +6,12 @@ import java.io.InputStream;
 
 import com.aspose.cells.Workbook;
 import com.example.service.reader.FileReaderService;
+import com.example.service.writer.FileWriterService;
 
 public class StringSorter {
 	
 	public FileReaderService fileReader;
+	public FileWriterService fileWriter;
 	
 	
 	public StringSorter() {
