@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.example.demo.service;
+package com.example.service.writer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,12 +21,12 @@ import com.aspose.cells.Worksheet;
  * @author augustoibarrola
  *
  */
-public class FileReaderServiceUtil {
+public class FileWriterServiceUtil {
 
 	public void countSheetRows(Worksheet worksheet) {
 
 		int worksheetRowCount = worksheet.getCells().getMaxDataRow();
-		
+
 	}
 
 	public void getSheetName(Worksheet worksheet) {
@@ -34,27 +34,24 @@ public class FileReaderServiceUtil {
 		String worksheetName = worksheet.getName();
 	}
 
-
 	public void mapBookShelves(Worksheet worksheet) {
-		
+
 		int bookshelfIndex;
-				
-		for(int i = 0; i < worksheet.getCells().getMaxColumn(); i++ ) {			
-			
+
+		for (int i = 0; i < worksheet.getCells().getMaxColumn(); i++) {
+
 			String columnName = worksheet.getCells().get(0, i).getStringValue();
-			
-			if(columnName.equals("Bookshelves")) 
-				{
-				
-					bookshelfIndex = i;
-					getBookShelves(bookshelfIndex, worksheet);
-					break;			
-				}
+
+			if (columnName.equals("Bookshelves")) {
+
+				bookshelfIndex = i;
+				getBookShelves(bookshelfIndex, worksheet);
+				break;
+			}
 		}
 
 	}
-	
-	
+
 	public void getBookShelves(Integer bookshelfIndex, Worksheet worksheet) {
 		
 		HashSet<String> unsortedBookShelves = new HashSet<String>();
@@ -68,62 +65,79 @@ public class FileReaderServiceUtil {
 		Collections.sort(bookshelves);
 		bookshelves.forEach(System.out::println);
 		writeToWorksheet(bookshelfIndex, worksheet, bookshelves);
+		
 		markYesPerRow(bookshelfIndex, worksheet, bookshelves.size());
 				
 		
 	}
 
 	private void markYesPerRow(Integer bookshelfIndex, Worksheet worksheet, int numberOfShelves) {
-		
-		for(int r = 0; r < worksheet.getCells().getMaxRow(); r++) {
-			
+
+		for (int r = 0; r < worksheet.getCells().getMaxRow(); r++) {
+
 			scanColumnsForMatchingShelf(bookshelfIndex, worksheet, numberOfShelves, r);
-			
+
 		}
-		
-		
+
 	}
 
-	private void scanColumnsForMatchingShelf(Integer bookshelfIndex, Worksheet worksheet, int numberOfShelves, int r) {
-		
-		for(int c = 0; c < numberOfShelves; c++) {
-			
+	private void scanColumnsForMatchingShelf(Integer bookshelfIndex, Worksheet worksheet, int numberOfShelves,
+			int row) {
+
+		for (int c = 0; c < numberOfShelves; c++) {
+
 			int shelfIterator = bookshelfIndex + c;
-			
-			Cell cell = worksheet.getCells().get(r, shelfIterator);
-			
-		}	
+
+			Cell cell = worksheet.getCells().get(row, shelfIterator);
+
+		}
 	}
 
 	public void writeToWorksheet(Integer bookshelfIndex, Worksheet worksheet, List<String> bookshelves) {
 
 //		worksheet.getCells().insertColumns(bookshelfIndex, ); // A until U exclusive
-		
-		for(int c = 0; c < bookshelves.size(); c++) {
-			worksheet.getCells().insertColumn((bookshelfIndex + c));
-			Cell cell = worksheet.getCells().get(0, (bookshelfIndex + c));
-			cell.putValue(bookshelves.get(c));
+
+		Integer oldBookshelfIndex = bookshelfIndex;
+
+		for (int c = 0; c < bookshelves.size(); c++) {
 			
-			////////////////////////////////
-			////////////////////////////////
-			//Set style of a cell
-	         Style style = cell.getStyle();
-	         //Set background color
-	         style.setBackgroundColor(Color.getYellow());
-	         //Set format of a cell
-	         style.getFont().setName("Courier New");
-	         style.setVerticalAlignment(TextAlignmentType.TOP);
-	          cell.setStyle(style);
+			for (int row = 0; row < worksheet.getCells().getMaxRow(); row++) {
+
+				List<String> rowOldBookshelfValue = Arrays.asList(
+															worksheet.getCells()
+															.get(row, oldBookshelfIndex)
+															.getStringValue()
+															.split(", "));
+				
+				worksheet.getCells().insertColumn((bookshelfIndex + c));
+				
+				if(c != 0 ) {
+					
+					
+					
+				}
+				Cell cell = worksheet.getCells().get(row, c);
+				
+				cell.putValue(bookshelves.get(c));
+				
+				
+				////////////////////////////////
+				////////////////////////////////
+				// Set style of a cell
+				Style style = cell.getStyle();
+				// Set background color
+				style.setBackgroundColor(Color.getYellow());
+				// Set format of a cell
+				style.getFont().setName("Courier New");
+				style.setVerticalAlignment(TextAlignmentType.TOP);
+				cell.setStyle(style);
+			}
 		}
-		
+
 	}
-	
-	
-	
-	
-	
+
 //	public void 
-	
+
 //	  			8 1. get all the bookshelves in the bookshelves column.
 //	  			9 2. get only unique values and delete any duplicates
 //	 			10 3. sort those values in alphabetical order

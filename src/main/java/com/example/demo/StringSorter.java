@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.aspose.cells.Workbook;
-import com.example.demo.service.FileReaderService;
+import com.example.service.reader.FileReaderService;
 
 public class StringSorter {
 	
@@ -13,18 +13,11 @@ public class StringSorter {
 	
 	
 	public StringSorter() {
-
-	    System.out.println();
-	    
+	    System.out.println();	    
 	    fileReader = new FileReaderService();
-	    
-		// Load the desired workbook file
 		InputStream is = getClass().getClassLoader().getResourceAsStream("AUGUSTO_GOODREADS_FINAL_77.xlsx");
 	    
-	    fileReader.loadWorkbookFromFile(is);
-	    
-//	    fileReader.loadWorkbookFromFile();
-	    
+	    fileReader.loadWorkbookFromFile(is);	    
 	    
 	    try {
 			is.close();

@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.service.writer;
 
 import java.io.InputStream;
 
@@ -10,9 +10,9 @@ import com.aspose.cells.WorksheetCollection;
  * @author augustoibarrola
  *
  */
-public class FileReaderService {
+public class FileWriterService {
 	
-	public FileReaderServiceUtil readerUtil = new FileReaderServiceUtil();
+	public FileWriterServiceUtil readerUtil = new FileWriterServiceUtil();
 	
 	
 	public void loadWorkbookFromFile(InputStream is) {
