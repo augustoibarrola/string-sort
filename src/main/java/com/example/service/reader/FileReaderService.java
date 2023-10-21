@@ -14,33 +14,22 @@ public class FileReaderService {
 	
 	public FileReaderServiceUtil readerUtil; 
 	
-//	public FileReaderService() {};
+
 	
 	public FileReaderService() {};
 	
-	public FileReaderService(InputStream is) {
-		FileReaderServiceUtil readerUtil = new FileReaderServiceUtil();
-		
-	};
 	
-	
-	public void loadWorkbookFromFile(InputStream is) {
-//	public void loadWorkbookFromFile() {
-		
+	public WorksheetCollection loadWorkbookFromFile(InputStream is) {	
 		try {
 			Workbook workbook = new Workbook(is);
 			WorksheetCollection worksheets = workbook.getWorksheets();
 			
-			loopThroughWorksheets(worksheets);
-//			readerUtil.writeToWorksheet(worksheets.get(0));
-
-			workbook.save("AUGUSTO_GOODREADS_FINAL_77.xlsx");
+			return worksheets;
 			
 		} catch (Exception e) {
-			
 			System.out.println("something failed");
-			
 			e.printStackTrace();
+			return null;
 		}
 		
 

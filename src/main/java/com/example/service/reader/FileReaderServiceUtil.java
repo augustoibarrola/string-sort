@@ -16,23 +16,14 @@ import com.aspose.cells.Color;
 import com.aspose.cells.Style;
 import com.aspose.cells.TextAlignmentType;
 import com.aspose.cells.Worksheet;
+import com.example.util.WorksheetUtilities;
 
 /**
  * @author augustoibarrola
  *
  */
-public class FileReaderServiceUtil {
-
-	public void countSheetRows(Worksheet worksheet) {
-
-		int worksheetRowCount = worksheet.getCells().getMaxDataRow();
-
-	}
-
-	public void getSheetName(Worksheet worksheet) {
-
-		String worksheetName = worksheet.getName();
-	}
+public class FileReaderServiceUtil extends WorksheetUtilities{
+	
 
 	public void mapBookShelves(Worksheet worksheet) {
 

@@ -13,7 +13,7 @@ public class StringSortApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StringSortApplication.class, args);
 		
-		StringSorter stringSort = new StringSorter();
+		FileService stringSort = new FileService();
 
 	}
 
