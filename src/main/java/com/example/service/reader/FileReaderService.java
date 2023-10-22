@@ -14,13 +14,12 @@ public class FileReaderService {
 	
 	public FileReaderServiceUtil readerUtil; 
 	
-
-	
 	public FileReaderService() {};
 	
 	
-	public WorksheetCollection loadWorkbookFromFile(InputStream is) {	
+	public WorksheetCollection loadWorksheetCollectionFromInputStream(InputStream is) {	
 		try {
+			
 			Workbook workbook = new Workbook(is);
 			WorksheetCollection worksheets = workbook.getWorksheets();
 			
@@ -47,7 +46,9 @@ public class FileReaderService {
 			readerUtil.mapBookShelves(worksheet);			
 		}	
 	}
-	
+
+
+
 	
 
 	

@@ -17,35 +17,37 @@ public class FileService {
 	private WorksheetCollection worksheets;
 	
 	
-	public FileService() {    
-	    fileReader = new FileReaderService();	
+	
+	public void start(String filePath) {
+	    
+		fileReader = new FileReaderService();	
 	    fileWriter = new FileWriterService();
-	    fileInputStream = loadFile();
-	    worksheets = loadWorksheets();
-	    
-	    
-	    
-	    closeFile(fileInputStream);
-	    
-
+	    fileInputStream = openInputStreamOfFile(filePath);
+	    worksheets = loadWorksheetsFromInputStream(fileInputStream);
+	}
+	
+	public void stop(InputStream fileInputStream) {
+	    closeInputStreamOfFile(fileInputStream);  		
+	}
+	
+	
+	private WorksheetCollection loadWorksheetsFromInputStream(InputStream fileInputStream) {		
+	    WorksheetCollection worksheets = fileReader.loadWorksheetCollectionFromInputStream(fileInputStream);
+		return worksheets;
 	}
 	
 
-	public InputStream loadFile() { return getClass().getClassLoader().getResourceAsStream("AUGUSTO_GOODREADS_FINAL_77.xlsx"); }
+	public InputStream openInputStreamOfFile(String file) { 
+		return getClass().getClassLoader().getResourceAsStream(file); 
+	}
 	
-	public void closeFile(InputStream fileInputStream ) {
+	public void closeInputStreamOfFile(InputStream fileInputStream) {
 		try {
 			fileInputStream.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		}
-	
-	private WorksheetCollection loadWorksheets() {		
-	    InputStream fileInputStream = loadFile();
-	    WorksheetCollection worksheets = fileReader.loadWorkbookFromFile(fileInputStream);
-		return worksheets;
 	}
-	
+
 
 }

@@ -14,6 +14,7 @@ public class StringSortApplication {
 		SpringApplication.run(StringSortApplication.class, args);
 		
 		FileService stringSort = new FileService();
+		stringSort.start();
 
 	}
 
