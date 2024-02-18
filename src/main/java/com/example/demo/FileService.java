@@ -27,6 +27,8 @@ public class FileService {
 	public FileService(String fileLocation){
 		this.fileReader = new FileReaderService();	
 		this.fileWriter = new FileWriterService();
+
+		System.out.println("Getting Worksheet from resources");
 		getworkSheets(fileLocation);
 	};
 
