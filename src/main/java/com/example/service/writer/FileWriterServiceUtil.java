@@ -25,11 +25,6 @@ import com.example.util.WorksheetUtilities;
 public class FileWriterServiceUtil extends WorksheetUtilities{
 
 
-	public void getSheetName(Worksheet worksheet) {
-
-		String worksheetName = worksheet.getName();
-	}
-
 	public void mapBookShelves(Worksheet worksheet) {
 
 		int bookshelfIndex;

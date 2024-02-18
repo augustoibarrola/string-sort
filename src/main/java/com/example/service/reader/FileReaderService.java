@@ -16,7 +16,6 @@ public class FileReaderService {
 	
 	public FileReaderService() {};
 	
-	
 	public WorksheetCollection loadWorksheetCollectionFromInputStream(InputStream is) {	
 		try {
 			
@@ -35,6 +34,7 @@ public class FileReaderService {
 		
 	}
 	
+
 	public void loopThroughWorksheets(WorksheetCollection worksheets) {
 		
 		for (int sheetIndex = 0; sheetIndex < worksheets.getCount(); sheetIndex++) {

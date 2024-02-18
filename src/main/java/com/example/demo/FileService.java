@@ -6,44 +6,58 @@ import java.io.InputStream;
 
 import com.aspose.cells.Workbook;
 import com.aspose.cells.WorksheetCollection;
+import com.example.service.handler.WorksheetStreamHandler;
 import com.example.service.reader.FileReaderService;
 import com.example.service.writer.FileWriterService;
 
 public class FileService {
 	
-	private FileReaderService fileReader;
+	private WorksheetStreamHandler worksheetsStream;
 	private FileWriterService fileWriter;
-	private InputStream fileInputStream;
+	private FileReaderService fileReader;
 	private WorksheetCollection worksheets;
 	
-	
-	
-	public void start(String filePath) {
-	    
-		fileReader = new FileReaderService();	
-	    fileWriter = new FileWriterService();
-	    fileInputStream = openInputStreamOfFile(filePath);
-	    worksheets = loadWorksheetsFromInputStream(fileInputStream);
-	}
-	
-	public void stop(InputStream fileInputStream) {
-	    closeInputStreamOfFile(fileInputStream);  		
-	}
-	
-	
-	private WorksheetCollection loadWorksheetsFromInputStream(InputStream fileInputStream) {		
-	    WorksheetCollection worksheets = fileReader.loadWorksheetCollectionFromInputStream(fileInputStream);
-		return worksheets;
-	}
-	
 
-	public InputStream openInputStreamOfFile(String file) { 
-		return getClass().getClassLoader().getResourceAsStream(file); 
+	public FileService(){
+		this.fileReader = new FileReaderService();	
+		this.fileWriter = new FileWriterService();
+	};
+
+
+	public FileService(String fileLocation){
+		this.fileReader = new FileReaderService();	
+		this.fileWriter = new FileWriterService();
+		this.worksheets  = getworkSheets(fileLocation);
+		// this.worksheets  = worksheetsStream.getWorkSheetStream(this.worksheetsStream);
+	};
+
+	private void getworkSheets(String fileLocation){
+		this.worksheetsStream = new WorksheetStreamHandler(fileLocation);
+		this.worksheets = loadWorksheetCollectionFromInputStream(this.worksheetsStream);
+
 	}
-	
-	public void closeInputStreamOfFile(InputStream fileInputStream) {
+
+	public void getBooksinBookshelf(String bookshelfName) {}
+
+	public WorksheetCollection loadWorksheetCollectionFromInputStream(InputStream is) {	
 		try {
-			fileInputStream.close();
+			
+			Workbook workbook = new Workbook(is);
+			WorksheetCollection worksheets = workbook.getWorksheets();
+			
+			return worksheets;
+			
+		} catch (Exception e) {
+			System.out.println("something failed");
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
+	public void closeInputStream() {
+		try {
+			this.worksheetStream.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

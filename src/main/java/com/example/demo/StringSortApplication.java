@@ -13,9 +13,20 @@ public class StringSortApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StringSortApplication.class, args);
 		
-		FileService stringSort = new FileService();
-		stringSort.start();
-
+		// String fileLocation = "AUGUSTO_GOODREADS_FINAL_77.xlsx";
+		String bookshelfName = "Bookshelves";
+		
+		FileService fileService = new FileService("AUGUSTO_GOODREADS_FINAL_77.xlsx");
+		
+		fileService.getBooksinBookshelf(bookshelfName);
+		
+//		fileService.stop();
 	}
+
+	// private static FileService getNewFileService(String string) {
+
+
+
+	// }
 
 }
