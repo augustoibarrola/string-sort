@@ -1,9 +1,5 @@
 package com.example.demo;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -22,11 +18,4 @@ public class StringSortApplication {
 		
 //		fileService.stop();
 	}
-
-	// private static FileService getNewFileService(String string) {
-
-
-
-	// }
-
 }
