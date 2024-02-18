@@ -14,24 +14,36 @@ public class WorksheetStreamHandler {
     public WorksheetStreamHandler(){};
 
     public WorksheetStreamHandler(String fileLOcation){
-        this.worksheetStream = getWorkSheetStream(fileLOcation);
+        this.worksheetStream = openInputStreamOfFile(fileLOcation);
     }
-    
-    public InputStream getWorkSheetStream(String fileLocation) {	
-        InputStream worksheetStream = openInputStreamOfFile(fileLocation);
-        return worksheetStream;
-    }
-    
-    public void getWorkSheetStream(InputStream worksheetsStream) {	
-        // loadWorksheetCollectionFromInputStream(worksheetsStream);
-    }
-
 
     public InputStream openInputStreamOfFile(String fileLocation) { 
-    return getClass().getClassLoader().getResourceAsStream(fileLocation);
-
-
-
+        return getClass().getClassLoader().getResourceAsStream(fileLocation);
+   }
+    
+   public WorksheetCollection loadWorksheetCollectionFromInputStream() {	
+    try {
+        
+        Workbook workbook = new Workbook(this.worksheetStream);
+        WorksheetCollection worksheets = workbook.getWorksheets();
+        
+        return worksheets;
+        
+    } catch (Exception e) {
+        System.out.println("something failed");
+        e.printStackTrace();
+        return null;
+    }
+    
+    
+}
+public void closeInputStream() {
+    try {
+        this.worksheetStream.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
     
 
 

@@ -27,41 +27,17 @@ public class FileService {
 	public FileService(String fileLocation){
 		this.fileReader = new FileReaderService();	
 		this.fileWriter = new FileWriterService();
-		this.worksheets  = getworkSheets(fileLocation);
-		// this.worksheets  = worksheetsStream.getWorkSheetStream(this.worksheetsStream);
+		getworkSheets(fileLocation);
 	};
 
 	private void getworkSheets(String fileLocation){
 		this.worksheetsStream = new WorksheetStreamHandler(fileLocation);
-		this.worksheets = loadWorksheetCollectionFromInputStream(this.worksheetsStream);
+		this.worksheets = this.worksheetsStream.loadWorksheetCollectionFromInputStream();
 
 	}
 
 	public void getBooksinBookshelf(String bookshelfName) {}
 
-	public WorksheetCollection loadWorksheetCollectionFromInputStream(InputStream is) {	
-		try {
-			
-			Workbook workbook = new Workbook(is);
-			WorksheetCollection worksheets = workbook.getWorksheets();
-			
-			return worksheets;
-			
-		} catch (Exception e) {
-			System.out.println("something failed");
-			e.printStackTrace();
-			return null;
-		}
-		
-		
-	}
-	public void closeInputStream() {
-		try {
-			this.worksheetStream.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 
 }
