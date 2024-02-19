@@ -7,7 +7,6 @@ import com.example.service.reader.FileReaderService;
 import com.example.service.writer.FileWriterService;
 import com.example.util.WorksheetUtilities;
 
-// - [x] 3. ~~_FileService should be renamed to Worksheet Service_~~
 public class WorksheetService {
 	
 	private WorksheetStreamHandler worksheetsStream;
