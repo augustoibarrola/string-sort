@@ -7,6 +7,7 @@ import com.example.service.reader.FileReaderService;
 import com.example.service.writer.FileWriterService;
 import com.example.util.WorksheetUtilities;
 
+// - [ ] 3. FileService should be renamed to Worksheet Service
 public class FileService {
 	
 	private WorksheetStreamHandler worksheetsStream;
@@ -21,6 +22,7 @@ public class FileService {
 		this.fileReader = new FileReaderService();	
 		this.fileWriter = new FileWriterService();
 	};
+
 
 	public FileService(String fileLocation){
 		this.fileReader = new FileReaderService();	
@@ -44,7 +46,7 @@ public class FileService {
 		Integer worksheetMaxRowCount = fileReader.getMaxNumberOfRows(this.worksheet);	
 		System.out.println("Worksheet has " +worksheetMaxRowCount+ " number of rows.");
 	}
-
+	
 	public void getAllColumnNames(){
 		fileReader.getAllColumnNames(this.worksheet);
 	}
