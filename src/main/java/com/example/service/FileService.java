@@ -33,7 +33,7 @@ public class FileService {
 		System.out.println("Success. Worksheet \"" +this.worksheet.getName() + "\" at index " +this.worksheet.getIndex() + " from Worksheet Collection is now open.");
 	};
 
-	public void getWorksheetCollectionName(String bookshelfName) 
+	public void getWorksheetName(String bookshelfName) 
 	{
 		String worksheetName = fileReader.getWorksheetCollectionName(this.worksheets);
 		System.out.println("Worksheet's name is  " + worksheetName);
@@ -43,5 +43,9 @@ public class FileService {
 	{
 		Integer worksheetMaxRowCount = fileReader.getMaxNumberOfRows(this.worksheet);	
 		System.out.println("Worksheet has " +worksheetMaxRowCount+ " number of rows.");
+	}
+
+	public void getAllColumnNames(){
+		fileReader.getAllColumnNames(this.worksheet);
 	}
 }
