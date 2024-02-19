@@ -7,8 +7,8 @@ import com.example.service.reader.FileReaderService;
 import com.example.service.writer.FileWriterService;
 import com.example.util.WorksheetUtilities;
 
-// - [ ] 3. FileService should be renamed to Worksheet Service
-public class FileService {
+// - [x] 3. ~~_FileService should be renamed to Worksheet Service_~~
+public class WorksheetService {
 	
 	private WorksheetStreamHandler worksheetsStream;
 	private WorksheetUtilities worksheetUtilities;
@@ -18,13 +18,13 @@ public class FileService {
 	private Worksheet worksheet;
 	
 
-	public FileService(){
+	public WorksheetService(){
 		this.fileReader = new FileReaderService();	
 		this.fileWriter = new FileWriterService();
 	};
 
 
-	public FileService(String fileLocation){
+	public WorksheetService(String fileLocation){
 		this.fileReader = new FileReaderService();	
 		this.fileWriter = new FileWriterService();
 
