@@ -12,33 +12,4 @@ public class WorksheetUtilities {
 	public Integer getMaxNumberOfRows(Worksheet worksheet) { 
 		return worksheet.getCells().getMaxDataRow();
 	}
-
-	// public void loopThroughWorksheets(WorksheetCollection worksheets) {
-	// 	for (int sheetIndex = 0; sheetIndex < worksheets.getCount(); sheetIndex++) {
-	// 		Worksheet worksheet = worksheets.get(sheetIndex);
-	// 		// getSheetName(worksheet);	
-	// 		System.out.println();
-	// 		mapBookShelves(worksheet);			
-	// 	}	
-	// }
-
-	// public void mapBookShelves(Worksheet worksheet) {
-
-	// 	int bookshelfIndex;
-
-	// 	for (int i = 0; i < worksheet.getCells().getMaxColumn(); i++) {
-
-	// 		String columnName = worksheet.getCells().get(0, i).getStringValue();
-
-	// 		if (columnName.equals("Bookshelves")) {
-	// 			System.out.println("THIS IS THE BOOKSHELF COLUMN: ");
-	// 			bookshelfIndex = i;
-	// 			System.out.println("THIS IS THE BOOKSHELF COLUMN: " + i );
-	// 			// getBookShelves(bookshelfIndex, worksheet);
-	// 			break;
-	// 		}
-	// 	}
-
-	// }
-
 }
