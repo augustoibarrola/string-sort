@@ -22,27 +22,24 @@ public class WorksheetStreamHandler {
         return getClass().getClassLoader().getResourceAsStream(fileLocation);
     }
 
+    public void closeInputStream() {        
+        try {
+            this.worksheetStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+    }
+}
+
     public WorksheetCollection loadWorksheetCollectionFromInputStream() {
         try {
             System.out.println("Getting Worksheet from Stream...");
             Workbook workbook = new Workbook(this.worksheetStream);
             WorksheetCollection worksheets = workbook.getWorksheets();
             return worksheets;
-
         } catch (Exception e) {
             System.out.println("something failed");
             e.printStackTrace();
             return null;
         }
-
     }
-
-    public void closeInputStream() {
-        try {
-            this.worksheetStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
