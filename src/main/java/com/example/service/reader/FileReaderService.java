@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.aspose.cells.Worksheet;
 import com.example.util.FileReaderServiceUtil;
@@ -48,7 +49,9 @@ public class FileReaderService extends WorksheetUtilities{
 			
 			String bookTitle = getBookTitle(worksheet, row, bookTitleColumn);
 			String bookAuthor = getBookAuthor(worksheet, row, bookAuthorColumn);
-			List<String> titleBookshelves = getBookshelves(worksheet, row, bookshelvesColumn);
+			// List<String> titleBookshelves = getBookshelves(worksheet, row, bookshelvesColumn);
+			List<String> titleBookshelves = sortBookshelves(worksheet, row, bookshelvesColumn);
+
 			
 			System.out.println(bookTitle +" by "+bookAuthor +", Bookshelves: " +titleBookshelves.toString());
 		}
@@ -69,4 +72,14 @@ public class FileReaderService extends WorksheetUtilities{
 		return titleBookshelves;
 	}
 
+	public List<String> sortBookshelves(Worksheet worksheet, Integer row, Integer column){
+		String[] bookshelvesArray = worksheet.getCells().get(row, column).getStringValue().split(",");
+		List<String> titleBookshelves = new ArrayList<>(Arrays.asList(bookshelvesArray));
+		titleBookshelves.forEach(String::trim);
+
+		titleBookshelves = titleBookshelves.stream().sorted().collect(Collectors.toList());
+
+		return titleBookshelves;
+
+	}
 }
