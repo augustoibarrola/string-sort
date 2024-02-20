@@ -36,7 +36,7 @@ public class WorksheetService {
 
 	public void getWorksheetName(String bookshelfName) 
 	{
-		String worksheetName = fileReader.getWorksheetCollectionName(this.worksheets);
+		String worksheetName = fileReader.getActiveWorksheetName(this.worksheets);
 		System.out.println("Worksheet's name is  " + worksheetName);
 	}
 

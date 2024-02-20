@@ -12,7 +12,7 @@ import com.aspose.cells.Style;
 import com.aspose.cells.TextAlignmentType;
 import com.aspose.cells.Worksheet;
 
-public class FileWriterServiceUtil extends WorksheetUtilities{
+public class FileWriterServiceUtil{
 
 
 }

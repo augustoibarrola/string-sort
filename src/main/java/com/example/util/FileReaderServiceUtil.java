@@ -14,7 +14,7 @@ import com.aspose.cells.WorksheetCollection;
  * @author augustoibarrola
  *
  */
-public class FileReaderServiceUtil extends WorksheetUtilities {
+public class FileReaderServiceUtil {
 
 
 }

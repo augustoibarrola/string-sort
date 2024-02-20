@@ -26,4 +26,8 @@ public class FileReaderService extends WorksheetUtilities{
 			System.out.println( columnPosition + " : " + columnName);
 		}
 	}	
+
+	public Integer getMaxNumberOfRows(Worksheet worksheet) { 
+		return worksheet.getCells().getMaxDataRow();
+	}
 }

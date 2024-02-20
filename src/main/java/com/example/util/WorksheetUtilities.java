@@ -3,13 +3,11 @@ package com.example.util;
 import com.aspose.cells.Worksheet;
 import com.aspose.cells.WorksheetCollection;
 
-public class WorksheetUtilities {	
+public abstract class WorksheetUtilities {	
 	
-	public String getWorksheetCollectionName(WorksheetCollection worksheet) { 
+	public String getActiveWorksheetName(WorksheetCollection worksheet) { 
 		return worksheet.getActiveSheetName(); 
 	}
 
-	public Integer getMaxNumberOfRows(Worksheet worksheet) { 
-		return worksheet.getCells().getMaxDataRow();
-	}
+	public abstract Integer getMaxNumberOfRows(Worksheet worksheet);
 }

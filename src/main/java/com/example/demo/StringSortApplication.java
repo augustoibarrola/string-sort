@@ -13,7 +13,7 @@ public class StringSortApplication {
 		
 		WorksheetService worksheetService = new WorksheetService("AUGUSTO_GOODREADS_DATA.xlsx");
 		
-		// fileService.getWorksheetMaxNumberOfRows();
+		worksheetService.getWorksheetMaxNumberOfRows();
 		worksheetService.getAllColumnNames();
 
 //		fileService.stop();
