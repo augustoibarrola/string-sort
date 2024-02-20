@@ -37,19 +37,13 @@ public class FileReaderService extends WorksheetUtilities{
 	public void getAllBooksAndTheirBookshelves(Worksheet worksheet){
 		System.out.println("Getting all Book Titles and their Bookshelves...");
 		
-		//1. find the index of the Book Title Column
 		Integer bookTitleColumn = getColumnHeaderBookTitle(worksheet);
+		Integer maxNumberOfRowsWithData = getMaxNumberOfRows(worksheet);
 		
 		//TODO - this is just for now; logic should be fleshed out to get author column when index isnt known
 		Integer bookAuthorColumn = 2;
 		Integer bookshelvesColumn = 16;
 		
-		//2. find the max number of books in the sheet
-		Integer maxNumberOfRowsWithData = getMaxNumberOfRows(worksheet);
-		
-		//loop down the worksheet
-		// we're starting at 1 since 0 would be 
-		// row with the column headers. 
 		for(int row = 1; row <= maxNumberOfRowsWithData; row++){
 			
 			String bookTitle = getBookTitle(worksheet, row, bookTitleColumn);
