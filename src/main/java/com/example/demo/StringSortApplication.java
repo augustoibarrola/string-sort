@@ -11,10 +11,11 @@ public class StringSortApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StringSortApplication.class, args);
 		
-		WorksheetService worksheetService = new WorksheetService("AUGUSTO_GOODREADS_DATA.xlsx");
+		WorksheetService worksheetService = new WorksheetService("GOODREADS_DATA.xlsx");
 		
 		worksheetService.getWorksheetMaxNumberOfRows();
-		worksheetService.getAllColumnNames();
+		// worksheetService.getAllColumnNames();
+		worksheetService.getAllBooksAndTheirBookshelves();
 
 //		fileService.stop();
 	}

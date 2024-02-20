@@ -30,4 +30,8 @@ public class FileReaderService extends WorksheetUtilities{
 	public Integer getMaxNumberOfRows(Worksheet worksheet) { 
 		return worksheet.getCells().getMaxDataRow();
 	}
+
+	public void getAllBooksAndTheirBookshelves(Worksheet worksheet){
+		System.out.println("Getting all Book Titles and their Bookshelves...");
+	}
 }

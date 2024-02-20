@@ -49,4 +49,8 @@ public class WorksheetService {
 	public void getAllColumnNames(){
 		fileReader.getAllColumnNames(this.worksheet);
 	}
+
+	public void getAllBooksAndTheirBookshelves(){
+		fileReader.getAllBooksAndTheirBookshelves(this.worksheet);
+	}
 }
