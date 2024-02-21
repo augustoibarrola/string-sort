@@ -73,11 +73,12 @@ public class FileReaderService extends WorksheetUtilities{
 	}
 
 	public List<String> sortBookshelves(Worksheet worksheet, Integer row, Integer column){
-		String[] bookshelvesArray = worksheet.getCells().get(row, column).getStringValue().split(",");
+		String[] bookshelvesArray = worksheet.getCells().get(row, column).getStringValue().split(", ");
 		List<String> titleBookshelves = new ArrayList<>(Arrays.asList(bookshelvesArray));
-		titleBookshelves.forEach(String::trim);
 
 		titleBookshelves = titleBookshelves.stream().sorted().collect(Collectors.toList());
+
+		titleBookshelves.forEach(String::trim);
 
 		return titleBookshelves;
 
