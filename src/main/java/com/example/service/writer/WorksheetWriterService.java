@@ -8,7 +8,7 @@ import com.aspose.cells.WorksheetCollection;
 import com.example.util.FileWriterServiceUtil;
 import com.example.util.WorksheetUtilities;
 
-public class FileWriterService extends WorksheetUtilities{
+public class WorksheetWriterService extends WorksheetUtilities{
 	
 	public FileWriterServiceUtil readerUtil = new FileWriterServiceUtil();
 
