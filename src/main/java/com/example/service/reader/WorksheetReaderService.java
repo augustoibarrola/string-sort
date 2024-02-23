@@ -14,7 +14,7 @@ import com.example.util.WorksheetUtilities;
  * @author augustoibarrola
  *
  */
-public class FileReaderService extends WorksheetUtilities{
+public class WorksheetReaderService extends WorksheetUtilities{
 	
 	public FileReaderServiceUtil readerUtil; 
 

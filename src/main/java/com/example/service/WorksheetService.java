@@ -3,7 +3,7 @@ package com.example.service;
 import com.aspose.cells.Worksheet;
 import com.aspose.cells.WorksheetCollection;
 import com.example.service.handler.WorksheetStreamHandler;
-import com.example.service.reader.FileReaderService;
+import com.example.service.reader.WorksheetReaderService;
 import com.example.service.writer.FileWriterService;
 import com.example.util.WorksheetUtilities;
 
@@ -12,19 +12,19 @@ public class WorksheetService {
 	private WorksheetStreamHandler worksheetsStream;
 	private WorksheetUtilities worksheetUtilities;
 	private FileWriterService fileWriter;
-	private FileReaderService fileReader;
+	private WorksheetReaderService fileReader;
 	private WorksheetCollection worksheets;
 	private Worksheet worksheet;
 	
 
 	public WorksheetService(){
-		this.fileReader = new FileReaderService();	
+		this.fileReader = new WorksheetReaderService();	
 		this.fileWriter = new FileWriterService();
 	};
 
 
 	public WorksheetService(String fileLocation){
-		this.fileReader = new FileReaderService();	
+		this.fileReader = new WorksheetReaderService();	
 		this.fileWriter = new FileWriterService();
 
 		System.out.println("Getting Worksheet from resources..");
