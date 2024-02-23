@@ -16,6 +16,7 @@ public class StringSortApplication {
 		worksheetService.getWorksheetMaxNumberOfRows();
 		// worksheetService.getAllColumnNames();
 		worksheetService.getAllBooksAndTheirBookshelves();
+		worksheetService.sortBookshelves();
 
 //		fileService.stop();
 	}

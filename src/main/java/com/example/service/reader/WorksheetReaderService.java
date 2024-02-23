@@ -36,6 +36,7 @@ public class WorksheetReaderService extends WorksheetUtilities{
 		
 		Integer bookTitleColumn = getColumnHeaderBookTitle(worksheet);
 		Integer maxNumberOfRowsWithData = getMaxNumberOfRows(worksheet);
+		List<List<String>> allBookshelves = new ArrayList<>();
 		
 		//TODO - this is just for now; logic should be fleshed out to get author column when index isnt known
 		Integer bookAuthorColumn = 2;
@@ -44,10 +45,11 @@ public class WorksheetReaderService extends WorksheetUtilities{
 		for(int row = 1; row <= maxNumberOfRowsWithData; row++){
 			String bookTitle = getBookTitle(worksheet, row, bookTitleColumn);
 			String bookAuthor = getBookAuthor(worksheet, row, bookAuthorColumn);
-			// List<String> titleBookshelves = getBookshelves(worksheet, row, bookshelvesColumn);
-			List<String> titleBookshelves = sortBookshelves(worksheet, row, bookshelvesColumn);
+			List<String> titleBookshelves = getBookshelves(worksheet, row, bookshelvesColumn);
+			// List<String> titleBookshelves = sortBookshelves(worksheet, row, bookshelvesColumn);
 
-			System.out.println(bookTitle +" by "+bookAuthor +", Bookshelves: " +titleBookshelves.toString());
+			// System.out.println(bookTitle +" by "+bookAuthor +", Bookshelves: " +titleBookshelves.toString());
+			// return titleBookshelves;
 		}
 	}
 
@@ -66,11 +68,11 @@ public class WorksheetReaderService extends WorksheetUtilities{
 		return titleBookshelves;
 	}
 
-	public List<String> sortBookshelves(Worksheet worksheet, Integer row, Integer column){
-		String[] bookshelvesArray = worksheet.getCells().get(row, column).getStringValue().split(", ");
-		List<String> titleBookshelves = new ArrayList<>(Arrays.asList(bookshelvesArray));
-		titleBookshelves = titleBookshelves.stream().sorted().collect(Collectors.toList());
-		titleBookshelves.forEach(String::trim);
-		return titleBookshelves;
-	}
+	// public List<String> sortBookshelves(Worksheet worksheet, Integer row, Integer column){
+	// 	String[] bookshelvesArray = worksheet.getCells().get(row, column).getStringValue().split(", ");
+	// 	List<String> titleBookshelves = new ArrayList<>(Arrays.asList(bookshelvesArray));
+	// 	titleBookshelves = titleBookshelves.stream().sorted().collect(Collectors.toList());
+	// 	titleBookshelves.forEach(String::trim);
+	// 	return titleBookshelves;
+	// }
 }
