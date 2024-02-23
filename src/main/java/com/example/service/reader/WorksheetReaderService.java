@@ -71,11 +71,8 @@ public class WorksheetReaderService extends WorksheetUtilities{
 	public List<String> sortBookshelves(Worksheet worksheet, Integer row, Integer column){
 		String[] bookshelvesArray = worksheet.getCells().get(row, column).getStringValue().split(", ");
 		List<String> titleBookshelves = new ArrayList<>(Arrays.asList(bookshelvesArray));
-
 		titleBookshelves = titleBookshelves.stream().sorted().collect(Collectors.toList());
-
 		titleBookshelves.forEach(String::trim);
-
 		return titleBookshelves;
 
 	}
