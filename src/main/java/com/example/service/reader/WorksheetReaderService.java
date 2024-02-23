@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.aspose.cells.Worksheet;
-import com.example.util.FileReaderServiceUtil;
 import com.example.util.WorksheetUtilities;
 
 /**
@@ -16,8 +15,6 @@ import com.example.util.WorksheetUtilities;
  */
 public class WorksheetReaderService extends WorksheetUtilities{
 	
-	public FileReaderServiceUtil readerUtil; 
-
 	public void getAllColumnNames(Worksheet worksheet){
 		int maxNumberOfColumns = worksheet.getCells().getMaxDataColumn();
 		
