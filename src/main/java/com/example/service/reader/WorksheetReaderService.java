@@ -42,13 +42,11 @@ public class WorksheetReaderService extends WorksheetUtilities{
 		Integer bookshelvesColumn = 16;
 		
 		for(int row = 1; row <= maxNumberOfRowsWithData; row++){
-			
 			String bookTitle = getBookTitle(worksheet, row, bookTitleColumn);
 			String bookAuthor = getBookAuthor(worksheet, row, bookAuthorColumn);
 			// List<String> titleBookshelves = getBookshelves(worksheet, row, bookshelvesColumn);
 			List<String> titleBookshelves = sortBookshelves(worksheet, row, bookshelvesColumn);
 
-			
 			System.out.println(bookTitle +" by "+bookAuthor +", Bookshelves: " +titleBookshelves.toString());
 		}
 	}
@@ -74,6 +72,5 @@ public class WorksheetReaderService extends WorksheetUtilities{
 		titleBookshelves = titleBookshelves.stream().sorted().collect(Collectors.toList());
 		titleBookshelves.forEach(String::trim);
 		return titleBookshelves;
-
 	}
 }
