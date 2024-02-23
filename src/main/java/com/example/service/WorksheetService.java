@@ -3,6 +3,7 @@ package com.example.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.aspose.cells.Worksheet;
@@ -29,14 +30,16 @@ public class WorksheetService {
 
 
 	public WorksheetService(String fileLocation){
-		this.fileReader = new WorksheetReaderService();	
-		this.fileWriter = new WorksheetWriterService();
-
 		System.out.println("Getting Worksheet from resources..");
 		this.worksheetsStream = new WorksheetStreamHandler(fileLocation);
 		this.worksheets = this.worksheetsStream.loadWorksheetCollectionFromInputStream();
 		this.worksheet = this.worksheets.get(this.worksheets.getActiveSheetIndex());
-		System.out.println("Success. Worksheet \"" +this.worksheet.getName() + "\" at index " +this.worksheet.getIndex() + " from Worksheet Collection is now open.");
+		System.out.println("I am "+this.worksheet.toString()+", just born.");
+		
+		this.fileReader = new WorksheetReaderService(this.worksheet);	
+		this.fileWriter = new WorksheetWriterService(this.worksheet);
+
+		// System.out.println("Success. Worksheet \"" +this.worksheet.getName() + "\" at index " +this.worksheet.getIndex() + " from Worksheet Collection is now open.");
 	};
 
 	public void getWorksheetName(String bookshelfName) 
@@ -55,12 +58,17 @@ public class WorksheetService {
 		fileReader.getAllColumnNames(this.worksheet);
 	}
 
-	public void getAllBooksAndTheirBookshelves(){
-		fileReader.getAllBooksAndTheirBookshelves(this.worksheet);
+	public Map<Integer, List<String>>  getAllBooksAndTheirBookshelves(){
+		Map<Integer, List<String>> allBookshelves = fileReader.getAllBooksAndTheirBookshelves(this.worksheet);
+		return allBookshelves;
 	}
 
 	public void sortBookshelves(){
+		Map<Integer, List<String>> allBookshelves = getAllBooksAndTheirBookshelves();
 
+		
+
+		
 	}
 
 }

@@ -2,7 +2,9 @@ package com.example.service.reader;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.aspose.cells.Worksheet;
@@ -13,6 +15,15 @@ import com.example.util.WorksheetUtilities;
  *
  */
 public class WorksheetReaderService extends WorksheetUtilities{
+
+	Worksheet worksheet;
+
+	public WorksheetReaderService(){}
+
+	public WorksheetReaderService(Worksheet worksheet){
+		this.worksheet = worksheet;
+		System.out.println("I am "+this.worksheet.toString()+", the writer.");
+	}
 	
 	public void getAllColumnNames(Worksheet worksheet){
 		int maxNumberOfColumns = worksheet.getCells().getMaxDataColumn();
@@ -27,38 +38,25 @@ public class WorksheetReaderService extends WorksheetUtilities{
 		}
 	}	
 
-	public Integer getMaxNumberOfRows(Worksheet worksheet) { 
-		return worksheet.getCells().getMaxDataRow();
-	}
-
-	public void getAllBooksAndTheirBookshelves(Worksheet worksheet){
+	public Map<Integer, List<String>> getAllBooksAndTheirBookshelves(Worksheet worksheet){
 		System.out.println("Getting all Book Titles and their Bookshelves...");
+		
+		Map<Integer, List<String>> allBookshelves = new HashMap<>();
 		
 		Integer bookTitleColumn = getColumnHeaderBookTitle(worksheet);
 		Integer maxNumberOfRowsWithData = getMaxNumberOfRows(worksheet);
-		List<List<String>> allBookshelves = new ArrayList<>();
-		
-		//TODO - this is just for now; logic should be fleshed out to get author column when index isnt known
-		Integer bookAuthorColumn = 2;
-		Integer bookshelvesColumn = 16;
+		Integer bookAuthorColumn = getColumnHeaderBookAuthor(worksheet);
+		Integer bookshelvesColumn = getColumnHeaderBookshelves(worksheet);
 		
 		for(int row = 1; row <= maxNumberOfRowsWithData; row++){
 			String bookTitle = getBookTitle(worksheet, row, bookTitleColumn);
 			String bookAuthor = getBookAuthor(worksheet, row, bookAuthorColumn);
 			List<String> titleBookshelves = getBookshelves(worksheet, row, bookshelvesColumn);
-			// List<String> titleBookshelves = sortBookshelves(worksheet, row, bookshelvesColumn);
-
-			// System.out.println(bookTitle +" by "+bookAuthor +", Bookshelves: " +titleBookshelves.toString());
-			// return titleBookshelves;
+			allBookshelves.put(row, titleBookshelves);
 		}
-	}
+		allBookshelves.forEach((row, bookshelf) -> System.out.println("Row "+ row +": "+ bookshelf.toString()));
 
-	public String getBookTitle(Worksheet worksheet, Integer row, Integer column){
-		return worksheet.getCells().get(row, column).getStringValue();
-	}
-
-	public String getBookAuthor(Worksheet worksheet, Integer row, Integer column){
-		return worksheet.getCells().get(row, column).getStringValue();
+		return allBookshelves;
 	}
 
 	public List<String> getBookshelves(Worksheet worksheet, Integer row, Integer column){
@@ -67,12 +65,4 @@ public class WorksheetReaderService extends WorksheetUtilities{
 		titleBookshelves.forEach(String::trim);
 		return titleBookshelves;
 	}
-
-	// public List<String> sortBookshelves(Worksheet worksheet, Integer row, Integer column){
-	// 	String[] bookshelvesArray = worksheet.getCells().get(row, column).getStringValue().split(", ");
-	// 	List<String> titleBookshelves = new ArrayList<>(Arrays.asList(bookshelvesArray));
-	// 	titleBookshelves = titleBookshelves.stream().sorted().collect(Collectors.toList());
-	// 	titleBookshelves.forEach(String::trim);
-	// 	return titleBookshelves;
-	// }
 }
