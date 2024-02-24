@@ -65,10 +65,6 @@ public class WorksheetService {
 
 	public void sortBookshelves(){
 		Map<Integer, List<String>> allBookshelves = getAllBooksAndTheirBookshelves();
-
-		
-
-		
 	}
 
 }
