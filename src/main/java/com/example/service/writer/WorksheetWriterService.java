@@ -22,7 +22,7 @@ public class WorksheetWriterService extends WorksheetUtilities{
 	
 	public void setBookshelves(Worksheet worksheet, Integer row, Integer column, List<String> bookshelves){
 
-		worksheet.getCells().get(row, column).putValue(bookshelves.toString());
+		worksheet.getCells().get(row, column).setValue(bookshelves.toString());
 		System.out.println("setBookshelf");
 
 	}
