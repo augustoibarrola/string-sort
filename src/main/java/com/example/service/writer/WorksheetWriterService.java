@@ -1,5 +1,8 @@
 package com.example.service.writer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.aspose.cells.Workbook;
 import com.aspose.cells.Worksheet;
 import com.aspose.cells.WorksheetCollection;
@@ -17,7 +20,12 @@ public class WorksheetWriterService extends WorksheetUtilities{
 
 	}
 	
-	public Integer getMaxNumberOfRows(Worksheet worksheet) { 
-		return worksheet.getCells().getMaxDataRow();
+	public void setBookshelves(Worksheet worksheet, Integer row, Integer column, List<String> bookshelves){
+
+		worksheet.getCells().get(row, column).putValue(bookshelves.toString());
+		System.out.println("setBookshelf");
+
 	}
+
+
 }

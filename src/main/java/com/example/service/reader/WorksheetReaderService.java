@@ -24,19 +24,6 @@ public class WorksheetReaderService extends WorksheetUtilities{
 		this.worksheet = worksheet;
 		System.out.println("I am "+this.worksheet.toString()+", the writer.");
 	}
-	
-	public void getAllColumnNames(Worksheet worksheet){
-		int maxNumberOfColumns = worksheet.getCells().getMaxDataColumn();
-		
-		System.out.println("Column Names: ");
-		for (int i = 0; i < maxNumberOfColumns; i++)
-		{
-			String columnName = worksheet.getCells().get(0, i).getStringValue();
-			// System.out.println(columnName);
-			String columnPosition = worksheet.getCells().get(0, i).getName();
-			System.out.println( columnPosition + " : " + columnName);
-		}
-	}	
 
 	public Map<Integer, List<String>> getAllBooksAndTheirBookshelves(Worksheet worksheet){
 		System.out.println("Getting all Book Titles and their Bookshelves...");

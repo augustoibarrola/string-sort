@@ -13,10 +13,9 @@ public class StringSortApplication {
 		
 		WorksheetService worksheetService = new WorksheetService("GOODREADS_DATA.xlsx");
 		
-		worksheetService.getWorksheetMaxNumberOfRows();
 		// worksheetService.getAllColumnNames();
-		worksheetService.getAllBooksAndTheirBookshelves();
 		worksheetService.sortBookshelves();
+		worksheetService.closeWorksheet();
 
 //		fileService.stop();
 	}

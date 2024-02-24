@@ -10,30 +10,41 @@ import com.aspose.cells.WorksheetCollection;
 
 public abstract class WorksheetUtilities {
 
-	public Worksheet worksheet;
-
 	public WorksheetUtilities() {
-	}
-
-	public WorksheetUtilities(Worksheet worksheet) {
 		System.out.println("WorksheetUtilities instantiated...");
 	}
 
-	public String getBookTitle(Worksheet worksheet, Integer row, Integer column) {
-		return worksheet.getCells().get(row, column).getStringValue();
-	}
-
-	public String getBookAuthor(Worksheet worksheet, Integer row, Integer column) {
-		return worksheet.getCells().get(row, column).getStringValue();
-	}
-
-	public String getActiveWorksheetName(WorksheetCollection worksheet) {
-		return worksheet.getActiveSheetName();
-	}
+	// public WorksheetUtilities(Worksheet worksheet) {
+	// 	System.out.println("WorksheetUtilities instantiated...");
+	// }
 
 	public Integer getMaxNumberOfRows(Worksheet worksheet) { 
 		return worksheet.getCells().getMaxDataRow();
 	}
+
+	//- [ ] these should be renamed, abstraced away from the idea of "Book"
+	public String getBookTitle(Worksheet worksheet, Integer row, Integer column) {
+		return worksheet.getCells().get(row, column).getStringValue();
+	}
+
+	//- [ ]  - 
+	public String getBookAuthor(Worksheet worksheet, Integer row, Integer column) {
+		return worksheet.getCells().get(row, column).getStringValue();
+	}
+
+	// public abstract List<String> getAllColumnHeaderNames(Worksheet worksheet);
+		
+	public List<String> getAllColumnHeaderNames(Worksheet worksheet){
+		int maxNumberOfColumns = worksheet.getCells().getMaxDataColumn();
+		List<String> worksheetColumnNames = new ArrayList<>(); 
+		System.out.println("Column Names: ");
+		for (int i = 0; i < maxNumberOfColumns; i++)
+		{
+			String columnName = worksheet.getCells().get(0, i).getStringValue();
+			worksheetColumnNames.add(columnName);
+		}
+		return worksheetColumnNames;
+	}	
 
 	protected Integer getColumnHeaderBookTitle(Worksheet worksheet) {
 		// this is just for now; the logic should be
@@ -41,15 +52,18 @@ public abstract class WorksheetUtilities {
 		// the index of 'Title' is not known.
 		return 1;
 	}
-
 	protected Integer getColumnHeaderBookAuthor(Worksheet worksheet) {
 		// this is just for now; the logic should be
 		// fleshed out for situations in which
 		// the index of 'Author' is not known.
 		return 2;
 	}
-
-
+	public Integer getColumnHeaderBookshelves() {
+		// this is just for now; the logic should be
+		// fleshed out for situations in which
+		// the index of 'Bookshelves' is not known.
+		return 16;
+	}
 	protected Integer getColumnHeaderBookshelves(Worksheet worksheet) {
 		// this is just for now; the logic should be
 		// fleshed out for situations in which
