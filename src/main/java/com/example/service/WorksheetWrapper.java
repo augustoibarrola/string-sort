@@ -79,9 +79,11 @@ public class WorksheetWrapper{
     }
 
     public List<String> sortBookshelves(List<String> unsortedBookshelves){
+        System.out.println("Unsorted Bookshelf: " + unsortedBookshelves.toString());
         List<String> sortedBookshelves = unsortedBookshelves.stream().sorted().collect(Collectors.toList());
         sortedBookshelves.forEach(String::trim);
-        return sortedBookshelves;
+        System.out.println("Sorted Bookshelf: " + sortedBookshelves.toString());
+                return sortedBookshelves;
     }
 
     public void closeWorksheetStream() {

@@ -17,14 +17,11 @@ public abstract class WorksheetUtilities {
 	public Integer getMaxNumberOfRows(Worksheet worksheet) { 
 		return worksheet.getCells().getMaxDataRow();
 	}
-
 	//- [ ]  these should be renamed, abstraced away from the idea of "Book"
 	public String getCellValueAsString(Worksheet worksheet, Integer row, Integer column) {
 		// - [ ]  create check to see if the cell value is blank or not 
 		return worksheet.getCells().get(row, column).getStringValue();
 	}
-
-	// public abstract List<String> getAllColumnHeaderNames(Worksheet worksheet);
 		
 	public List<String> getAllColumnHeaderNames(Worksheet worksheet){
 		int maxNumberOfColumns = worksheet.getCells().getMaxDataColumn();
@@ -64,10 +61,15 @@ public abstract class WorksheetUtilities {
 	}
 
 	public List<String> sortBookshelves(Worksheet worksheet, Integer row, Integer column) {
+		
 		String[] bookshelvesArray = worksheet.getCells().get(row, column).getStringValue().split(", ");
-		List<String> titleBookshelves = new ArrayList<>(Arrays.asList(bookshelvesArray));
-		titleBookshelves = titleBookshelves.stream().sorted().collect(Collectors.toList());
-		titleBookshelves.forEach(String::trim);
-		return titleBookshelves;
+		if (bookshelvesArray.length <= 1){
+			List<String> titleBookshelves = new ArrayList<>(Arrays.asList(bookshelvesArray));
+			titleBookshelves = titleBookshelves.stream().sorted().collect(Collectors.toList());
+			titleBookshelves.forEach(String::trim);
+			return titleBookshelves;
+		} else{
+			return null;
+		}
 	}
 }
