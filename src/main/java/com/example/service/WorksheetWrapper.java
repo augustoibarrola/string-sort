@@ -40,12 +40,10 @@ public class WorksheetWrapper{
 
         // this.currentRowIndex = this.worksheet.getCells().getRows().
     };
-    
     public Integer getMaxRows()
 	{
         return fileReader.getMaxNumberOfRows(this.worksheet);	
 	}
-
     public void getWorksheetName(String bookshelfName) 
 	{
 		String worksheetName = worksheet.getName();
