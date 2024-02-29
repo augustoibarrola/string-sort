@@ -7,6 +7,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.aspose.cells.Cell;
+import com.aspose.cells.Workbook;
 import com.aspose.cells.Worksheet;
 import com.aspose.cells.WorksheetCollection;
 import com.example.service.handler.WorksheetStreamHandler;
@@ -18,21 +19,22 @@ public class WorksheetWrapper{
     
     private WorksheetStreamHandler worksheetsStream;
 	private WorksheetCollection workSheetCollection;
+    private Workbook workbook;
+	private Worksheet worksheet;
 	private WorksheetWriterService fileWriter;
 	private WorksheetReaderService fileReader;
-	// private WorksheetCollection worksheets;
-	private Worksheet worksheet;
 
     private Integer currentRowIndex;
     private Integer maxRows;
 
 
     public WorksheetWrapper(){};
-
     public WorksheetWrapper(String fileLocation ){
         this.worksheetsStream = new WorksheetStreamHandler(fileLocation);
-        this.workSheetCollection = this.worksheetsStream.loadWorksheetCollectionFromInputStream();
-        this.worksheet = this.workSheetCollection.get(this.workSheetCollection.getActiveSheetIndex());
+        this.workbook = this.worksheetsStream.loadWorkbookFromInputStream(fileLocation);
+        // this.workSheetCollection = this.worksheetsStream.loadWorksheetCollectionFromInputStream();
+        // this.worksheet = this.workSheetCollection.get(this.workSheetCollection.getActiveSheetIndex());
+        this.worksheet = this.workbook.getWorksheets().get(this.workbook.getWorksheets().getActiveSheetIndex());
         this.fileReader = new WorksheetReaderService(this.worksheet);	
 		this.fileWriter = new WorksheetWriterService(this.worksheet);        
 
@@ -63,6 +65,7 @@ public class WorksheetWrapper{
                 System.out.println(sortedBookshelves.toString());
 
         }
+        // this.worksheet.save
     }
 
     public List<String> sortBookshelves(List<String> unsortedBookshelves){
