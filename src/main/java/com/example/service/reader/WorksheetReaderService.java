@@ -36,8 +36,8 @@ public class WorksheetReaderService extends WorksheetUtilities{
 		Integer bookshelvesColumn = getColumnHeaderBookshelves(worksheet);
 		
 		for(int row = 1; row <= maxNumberOfRowsWithData; row++){
-			String bookTitle = getBookTitle(worksheet, row, bookTitleColumn);
-			String bookAuthor = getBookAuthor(worksheet, row, bookAuthorColumn);
+			String bookTitle = getCellValueAsString(worksheet, row, bookTitleColumn);
+			String bookAuthor = getCellValueAsString(worksheet, row, bookAuthorColumn);
 			List<String> titleBookshelves = getBookshelves(worksheet, row, bookshelvesColumn);
 			allBookshelves.put(row, titleBookshelves);
 		}

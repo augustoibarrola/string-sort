@@ -29,10 +29,12 @@ public class WorksheetWrapper{
 
 
     public WorksheetWrapper(){};
+
     public WorksheetWrapper(String fileLocation ){
-        this.worksheetsStream = new WorksheetStreamHandler(fileLocation);
-        this.workbook = this.worksheetsStream.loadWorkbookFromInputStream(fileLocation);
+        loadWorksheetStreamHandler(fileLocation);
+        loadWorksheetCollection();
         // this.workSheetCollection = this.worksheetsStream.loadWorksheetCollectionFromInputStream();
+        this.workbook = this.worksheetsStream.loadWorkbookFromInputStream(fileLocation);
         // this.worksheet = this.workSheetCollection.get(this.workSheetCollection.getActiveSheetIndex());
         this.worksheet = this.workbook.getWorksheets().get(this.workbook.getWorksheets().getActiveSheetIndex());
         this.fileReader = new WorksheetReaderService(this.worksheet);	
@@ -40,6 +42,16 @@ public class WorksheetWrapper{
 
         // this.currentRowIndex = this.worksheet.getCells().getRows().
     };
+
+    private void loadWorksheetStreamHandler(String fileLocation){
+        this.worksheetsStream = new WorksheetStreamHandler(fileLocation);
+    }
+
+    private void loadWorksheetCollection(){
+        this.workSheetCollection = this.worksheetsStream.loadWorksheetCollectionFromInputStream();
+
+    }
+    
     public Integer getMaxRows()
 	{
         return fileReader.getMaxNumberOfRows(this.worksheet);	

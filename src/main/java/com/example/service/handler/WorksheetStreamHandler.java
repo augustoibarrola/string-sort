@@ -36,7 +36,7 @@ public class WorksheetStreamHandler {
 
 public Workbook loadWorkbookFromInputStream(String fileLocation){
 
-    ClassLoader classLoader = getClass().getClassLoader();
+ClassLoader classLoader = getClass().getClassLoader();
  String path  = classLoader.getResource(fileLocation).getPath();
  System.out.println(path);
 
@@ -54,7 +54,7 @@ public Workbook loadWorkbookFromInputStream(String fileLocation){
 
     public WorksheetCollection loadWorksheetCollectionFromInputStream() {
         try {
-            System.out.println("Getting Worksheet from Stream...");
+            System.out.println("Loading WorksheetCollectionFromInputStream from worksheetStream");
             Workbook workbook = new Workbook(this.worksheetStream);
             WorksheetCollection worksheets = workbook.getWorksheets();
             return worksheets;

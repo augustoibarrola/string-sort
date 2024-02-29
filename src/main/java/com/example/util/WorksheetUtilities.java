@@ -14,21 +14,13 @@ public abstract class WorksheetUtilities {
 		System.out.println("WorksheetUtilities instantiated...");
 	}
 
-	// public WorksheetUtilities(Worksheet worksheet) {
-	// 	System.out.println("WorksheetUtilities instantiated...");
-	// }
-
 	public Integer getMaxNumberOfRows(Worksheet worksheet) { 
 		return worksheet.getCells().getMaxDataRow();
 	}
 
-	//- [ ] these should be renamed, abstraced away from the idea of "Book"
-	public String getBookTitle(Worksheet worksheet, Integer row, Integer column) {
-		return worksheet.getCells().get(row, column).getStringValue();
-	}
-
-	//- [ ]  - 
-	public String getBookAuthor(Worksheet worksheet, Integer row, Integer column) {
+	//- [ ]  these should be renamed, abstraced away from the idea of "Book"
+	public String getCellValueAsString(Worksheet worksheet, Integer row, Integer column) {
+		// - [ ]  create check to see if the cell value is blank or not 
 		return worksheet.getCells().get(row, column).getStringValue();
 	}
 
