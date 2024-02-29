@@ -21,7 +21,6 @@ public class WorksheetService {
 	};
 
 	public WorksheetService(String fileLocation) {
-		System.out.println("Getting Worksheet from resources..");
 		this.worksheet = new WorksheetWrapper(fileLocation);
 	};
 

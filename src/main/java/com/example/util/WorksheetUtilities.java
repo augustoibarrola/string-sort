@@ -34,7 +34,6 @@ public abstract class WorksheetUtilities {
 		}
 		return worksheetColumnNames;
 	}	
-
 	protected Integer getColumnHeaderBookTitle(Worksheet worksheet) {
 		// this is just for now; the logic should be
 		// fleshed out for situations in which

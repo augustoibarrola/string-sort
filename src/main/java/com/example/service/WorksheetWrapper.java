@@ -70,19 +70,19 @@ public class WorksheetWrapper{
         for(int row = 0; row <= this.getMaxRows(); row++){
                 List<String> unsortedBookshelves = fileReader.getBookshelves(this.worksheet, row, this.fileReader.getColumnHeaderBookshelves());
                 List<String> sortedBookshelves = sortBookshelves(unsortedBookshelves);
-                fileWriter.setBookshelves(worksheet, row, this.fileReader.getColumnHeaderBookshelves(), sortedBookshelves);
+                // fileWriter.setBookshelves(worksheet, row, this.fileReader.getColumnHeaderBookshelves(), sortedBookshelves);
             // String[] unsortedBookshelves = this.worksheet.getCells().get(row, this.fileReader.getColumnHeaderBookshelves()).toString().split(" ");
-                System.out.println(sortedBookshelves.toString());
+            if(sortedBookshelves.size() > 1){
+                System.out.println("Sorted Bookshelves: "+sortedBookshelves.toString());
+            }    
 
         }
         // this.worksheet.save
     }
 
     public List<String> sortBookshelves(List<String> unsortedBookshelves){
-        System.out.println("Unsorted Bookshelf: " + unsortedBookshelves.toString());
         List<String> sortedBookshelves = unsortedBookshelves.stream().sorted().collect(Collectors.toList());
         sortedBookshelves.forEach(String::trim);
-        System.out.println("Sorted Bookshelf: " + sortedBookshelves.toString());
                 return sortedBookshelves;
     }
 
