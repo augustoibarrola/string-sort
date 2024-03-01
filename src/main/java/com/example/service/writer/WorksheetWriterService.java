@@ -3,9 +3,9 @@ package com.example.service.writer;
 import java.util.List;
 
 import com.aspose.cells.Worksheet;
-import com.example.util.WorksheetUtilities;
+import com.example.util.WorkbookUtilities;
 
-public class WorksheetWriterService extends WorksheetUtilities{
+public class WorksheetWriterService extends WorkbookUtilities{
 
 	public Worksheet worksheet; 
 

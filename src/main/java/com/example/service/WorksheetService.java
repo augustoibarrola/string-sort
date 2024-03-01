@@ -12,14 +12,14 @@ public class WorksheetService {
 		this.worksheet = new WorksheetWrapper(fileLocation);
 	};
 
-	public void getAllColumnNames() {
-		worksheet.getAllColumnNames();
-	}
+	// public void getAllColumnNames() {
+	// 	worksheet.getAllColumnNames();
+	// }
 
-	public void sortBookshelves() {
-		worksheet.sortBookshelves();
-		
-	}
+	// public void sortBookshelves() {
+	// 	worksheet.sortBookshelves();
+
+	// }
 
 	public void closeWorksheet() {
 		worksheet.closeWorksheetStream();

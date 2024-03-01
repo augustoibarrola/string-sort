@@ -19,8 +19,7 @@ public class WorksheetWrapper {
     private WorksheetWriterService fileWriter;
     private WorksheetReaderService fileReader;
 
-    public WorksheetWrapper() {
-    };
+    public WorksheetWrapper() {};
 
     public WorksheetWrapper(String fileLocation) {
         loadWorksheetStreamHandler(fileLocation);
@@ -39,32 +38,26 @@ public class WorksheetWrapper {
         this.workSheetCollection = this.worksheetsStream.loadWorksheetCollectionFromInputStream();
     }
 
-    public Integer getMaxRows() {
-        return fileReader.getMaxNumberOfRows(this.worksheet);
-    }
 
     public void getWorksheetName(String bookshelfName) {
         String worksheetName = worksheet.getName();
     }
 
-    public List<String> getAllColumnNames() {
-        return this.fileReader.getAllColumnHeaderNames(this.worksheet);
-    }
 
-    public void sortBookshelves() {
-        for (int row = 0; row <= this.getMaxRows(); row++) {
-            List<String> unsortedBookshelves = fileReader.getBookshelves(this.worksheet, row,
-                    this.fileReader.getColumnHeaderBookshelves());
-            List<String> sortedBookshelves = sortBookshelves(unsortedBookshelves);
-            // String[] unsortedBookshelves = this.worksheet.getCells().get(row,
-            // this.fileReader.getColumnHeaderBookshelves()).toString().split(" ");
-            if (sortedBookshelves.size() > 1) {
-                fileWriter.setBookshelves(worksheet, row, this.fileReader.getColumnHeaderBookshelves(),
-                        sortedBookshelves);
-                System.out.println("Sorted Bookshelves: " + sortedBookshelves.toString());
-            }
-        }
-    }
+    // public void sortBookshelves() {
+    //     for (int row = 0; row <= this.getMaxRows(); row++) {
+    //         List<String> unsortedBookshelves = fileReader.getBookshelves(this.worksheet, row,
+    //                 this.fileReader.getColumnHeaderBookshelves());
+    //         List<String> sortedBookshelves = sortBookshelves(unsortedBookshelves);
+    //         // String[] unsortedBookshelves = this.worksheet.getCells().get(row,
+    //         // this.fileReader.getColumnHeaderBookshelves()).toString().split(" ");
+    //         if (sortedBookshelves.size() > 1) {
+    //             fileWriter.setBookshelves(worksheet, row, this.fileReader.getColumnHeaderBookshelves(),
+    //                     sortedBookshelves);
+    //             System.out.println("Sorted Bookshelves: " + sortedBookshelves.toString());
+    //         }
+    //     }
+    // }
 
     public void saveWorkbook() {
 

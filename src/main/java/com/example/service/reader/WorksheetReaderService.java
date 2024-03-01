@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.aspose.cells.Worksheet;
-import com.example.util.WorksheetUtilities;
+import com.example.util.WorkbookUtilities;
 
 /**
  * @author augustoibarrola
  *
  */
-public class WorksheetReaderService extends WorksheetUtilities{
+public class WorksheetReaderService extends WorkbookUtilities{
 
 	Worksheet worksheet;
 
@@ -23,26 +23,26 @@ public class WorksheetReaderService extends WorksheetUtilities{
 		this.worksheet = worksheet;
 	}
 
-	public Map<Integer, List<String>> getAllBooksAndTheirBookshelves(Worksheet worksheet){
-		System.out.println("Getting all Book Titles and their Bookshelves...");
+	// public Map<Integer, List<String>> getAllBooksAndTheirBookshelves(Worksheet worksheet){
+	// 	System.out.println("Getting all Book Titles and their Bookshelves...");
 		
-		Map<Integer, List<String>> allBookshelves = new HashMap<>();
+	// 	Map<Integer, List<String>> allBookshelves = new HashMap<>();
 		
-		Integer bookTitleColumn = getColumnHeaderBookTitle(worksheet);
-		Integer maxNumberOfRowsWithData = getMaxNumberOfRows(worksheet);
-		Integer bookAuthorColumn = getColumnHeaderBookAuthor(worksheet);
-		Integer bookshelvesColumn = getColumnHeaderBookshelves(worksheet);
+	// 	Integer bookTitleColumn = getColumnHeaderBookTitle(worksheet);
+	// 	Integer maxNumberOfRowsWithData = getMaxNumberOfRows(worksheet);
+	// 	Integer bookAuthorColumn = getColumnHeaderBookAuthor(worksheet);
+	// 	Integer bookshelvesColumn = getColumnHeaderBookshelves(worksheet);
 		
-		for(int row = 1; row <= maxNumberOfRowsWithData; row++){
-			String bookTitle = getCellValueAsString(worksheet, row, bookTitleColumn);
-			String bookAuthor = getCellValueAsString(worksheet, row, bookAuthorColumn);
-			List<String> titleBookshelves = getBookshelves(worksheet, row, bookshelvesColumn);
-			allBookshelves.put(row, titleBookshelves);
-		}
-		allBookshelves.forEach((row, bookshelf) -> System.out.println("Row "+ row +": "+ bookshelf.toString()));
+	// 	for(int row = 1; row <= maxNumberOfRowsWithData; row++){
+	// 		String bookTitle = getCellValueAsString(worksheet, row, bookTitleColumn);
+	// 		String bookAuthor = getCellValueAsString(worksheet, row, bookAuthorColumn);
+	// 		List<String> titleBookshelves = getBookshelves(worksheet, row, bookshelvesColumn);
+	// 		allBookshelves.put(row, titleBookshelves);
+	// 	}
+	// 	allBookshelves.forEach((row, bookshelf) -> System.out.println("Row "+ row +": "+ bookshelf.toString()));
 
-		return allBookshelves;
-	}
+	// 	return allBookshelves;
+	// }
 
 	public List<String> getBookshelves(Worksheet worksheet, Integer row, Integer column){
 		String[] bookshelvesArray = worksheet.getCells().get(row, column).getStringValue().split(",");
