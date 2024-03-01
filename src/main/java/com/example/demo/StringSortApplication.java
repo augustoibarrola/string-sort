@@ -17,8 +17,12 @@ public class StringSortApplication {
 		
 		FileInputStream file = new FileInputStream(new File("src/main/resources/GOODREADS_DATA.xlsx"));
 		Workbook workbook = new Workbook(file);
-		WorkbookUtilities workbookUtilities = new WorkbookUtilities(workbook);
+
+		WorkbookUtilities workbookUtilities = new WorkbookUtilities(workbook);		
+
+		
 		workbookUtilities.getNameOfActiveWorkSheet();
+		workbookUtilities.sortWorkbookWorksheet();
 		
 
 	}
