@@ -6,22 +6,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.aspose.cells.Worksheet;
-import com.aspose.cells.WorksheetCollection;
 
 public abstract class WorksheetUtilities {
 
-	public WorksheetUtilities() {
-		System.out.println("WorksheetUtilities instantiated...");
-	}
+	public WorksheetUtilities() {}
 
-	public Integer getMaxNumberOfRows(Worksheet worksheet) { 
-		return worksheet.getCells().getMaxDataRow();
-	}
+	public Integer getMaxNumberOfRows(Worksheet worksheet) {return worksheet.getCells().getMaxDataRow();}
+	
 	//- [ ]  these should be renamed, abstraced away from the idea of "Book"
-	public String getCellValueAsString(Worksheet worksheet, Integer row, Integer column) {
-		// - [ ]  create check to see if the cell value is blank or not 
-		return worksheet.getCells().get(row, column).getStringValue();
-	}
+	// - [ ]  create check to see if the cell value is blank or not 
+	public String getCellValueAsString(Worksheet worksheet, Integer row, Integer column) {return worksheet.getCells().get(row, column).getStringValue();}
 		
 	public List<String> getAllColumnHeaderNames(Worksheet worksheet){
 		int maxNumberOfColumns = worksheet.getCells().getMaxDataColumn();

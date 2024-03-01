@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import com.aspose.cells.Worksheet;
 import com.example.util.WorksheetUtilities;
@@ -22,7 +21,6 @@ public class WorksheetReaderService extends WorksheetUtilities{
 
 	public WorksheetReaderService(Worksheet worksheet){
 		this.worksheet = worksheet;
-		System.out.println("I am "+this.worksheet.toString()+", the writer.");
 	}
 
 	public Map<Integer, List<String>> getAllBooksAndTheirBookshelves(Worksheet worksheet){
