@@ -7,7 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.aspose.cells.Workbook;
-import com.example.service.WorksheetService;
 import com.example.util.WorkbookUtilities;
 
 @SpringBootApplication
@@ -17,9 +16,10 @@ public class StringSortApplication {
 		SpringApplication.run(StringSortApplication.class, args);
 		
 		FileInputStream file = new FileInputStream(new File("src/main/resources/GOODREADS_DATA.xlsx"));
-		WorkbookUtilities workbookUtilities = new WorkbookUtilities();
 		Workbook workbook = new Workbook(file);
-		workbookUtilities.getNameOfActiveWorkSheet(workbook);
+		WorkbookUtilities workbookUtilities = new WorkbookUtilities(workbook);
+		workbookUtilities.getNameOfActiveWorkSheet();
+		
 
 	}
 }
