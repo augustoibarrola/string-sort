@@ -40,15 +40,10 @@ public class WorkbookUtilities {
     	for(int row=1; row <= maxNumberofRowsWithData; row++) {
     		
     		CellDAO currentCellDao = new CellDAO(this.workbook.getWorksheets().get(0).getCells().get(row, 16)); 
-//    		this.workbook.getWorksheets().get(0).getCells().get(row, 16).setValue("FUCK!!");
     		if(currentCellDao.getStringValueAsList().size() != 1) {	
     		
     			List<String> sortedShelves = new ArrayList<>(currentCellDao.getStringValueAsList()); 
-//    			sortedShelves = currentCellDao.getStringValueAsList().sort(null);
-    			sortedShelves = sortedShelves.stream().sorted().collect(Collectors.toList());
-//    			System.out.println("Unsorted : " + currentCellDao.getStringValue());
-//    			System.out.println("Sorted : " + sortedShelves.toString());
-    			
+    			sortedShelves = sortedShelves.stream().sorted().collect(Collectors.toList());    			
     			/*
     			 * - [ ]  Issue #11 created to eventually remove trailing comma from 
     			 * 		sortedShelveAsStringBuffer before saving it into the workbook
