@@ -2,6 +2,7 @@ package com.example.util;
 
 
 import com.aspose.cells.Workbook;
+import com.example.dao.CellDAO;
 import com.example.dao.WorkbookDAO;
 import com.example.dao.WorksheetDAO;
 
@@ -10,6 +11,7 @@ public class WorkbookUtilities {
 	Workbook workbook;
 	WorkbookDAO workbookDao;
 	WorksheetDAO worksheetDao;
+	CellDAO currentCellDao;
 
 	public WorkbookUtilities() {}
 
@@ -32,11 +34,18 @@ public class WorkbookUtilities {
     	int maxNumberofRowsWithData = this.workbook.getWorksheets().get(0).getCells().getMaxDataRow(); 
     	
     	for(int row=1; row <= maxNumberofRowsWithData; row++) {
-    		this.workbook.getWorksheets().get(0).getCells().get(row, 16).setValue("FUCK!!");
+    		
+    		CellDAO currentCellDao = new CellDAO(this.workbook.getWorksheets().get(0).getCells().get(row, 16)); 
+//    		this.workbook.getWorksheets().get(0).getCells().get(row, 16).setValue("FUCK!!");
+    		if(currentCellDao.getStringValue() !=null && currentCellDao.getStringValue() !="") {
+    			System.out.println(currentCellDao.getStringValue());
+    		}
     	}
     	
     	saveWorkbook();
 	}
+    
+    
     
     public void saveWorkbook() {
 		try {
