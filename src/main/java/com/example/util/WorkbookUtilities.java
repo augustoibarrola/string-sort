@@ -29,16 +29,23 @@ public class WorkbookUtilities {
 
     public void sortWorkbookWorksheet() {
     	
-    	for(int row=1; row < this.workbook.getWorksheets().get(0).getCells().getMaxDataRow();row++) {
-    		this.workbook.getWorksheets().get(0).getCells().get(row, 16).setValue("FUCK FUCK FUCK");
+    	int maxNumberofRowsWithData = this.workbook.getWorksheets().get(0).getCells().getMaxDataRow(); 
+    	
+    	for(int row=1; row <= maxNumberofRowsWithData; row++) {
+    		this.workbook.getWorksheets().get(0).getCells().get(row, 16).setValue("FUCK!!");
     	}
-		
+    	
+    	saveWorkbook();
+	}
+    
+    public void saveWorkbook() {
 		try {
 			this.workbook.save("src/main/resources/GOODREADS_DATA.xlsx");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+
+    }
 
 
 }

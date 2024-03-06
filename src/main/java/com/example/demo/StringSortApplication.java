@@ -28,7 +28,8 @@ public class StringSortApplication {
 
 		workbookUtilities.getNameOfActiveWorkSheet();
 		workbookUtilities.sortWorkbookWorksheet();
-//		workbook.save("src/main/resources/GOODREADS_DATA.xlsx");
+		workbookUtilities.saveWorkbook();
+		System.out.println("Saved");
 		
 
 	}
