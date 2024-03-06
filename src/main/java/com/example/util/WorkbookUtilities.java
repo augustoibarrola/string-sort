@@ -1,6 +1,10 @@
 package com.example.util;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.aspose.cells.Workbook;
 import com.example.dao.CellDAO;
 import com.example.dao.WorkbookDAO;
@@ -37,12 +41,20 @@ public class WorkbookUtilities {
     		
     		CellDAO currentCellDao = new CellDAO(this.workbook.getWorksheets().get(0).getCells().get(row, 16)); 
 //    		this.workbook.getWorksheets().get(0).getCells().get(row, 16).setValue("FUCK!!");
-    		if(currentCellDao.getStringValue() !=null && currentCellDao.getStringValue() !="") {
-    			System.out.println(currentCellDao.getStringValue());
+    		if(currentCellDao.getStringValueAsList().size() != 1) {	
+    		
+    			List<String> sortedShelves = new ArrayList<>(currentCellDao.getStringValueAsList()); 
+//    			sortedShelves = currentCellDao.getStringValueAsList().sort(null);
+    			sortedShelves = sortedShelves.stream().sorted().collect(Collectors.toList());
+    			System.out.println("Unsorted : " + currentCellDao.getStringValue());
+    			System.out.println("Sorted : " + sortedShelves.toString());
+    			System.out.println();
+    			System.out.println();
+    			
     		}
     	}
     	
-    	saveWorkbook();
+//    	saveWorkbook();
 	}
     
     
