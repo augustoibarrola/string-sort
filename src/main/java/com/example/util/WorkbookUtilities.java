@@ -46,15 +46,29 @@ public class WorkbookUtilities {
     			List<String> sortedShelves = new ArrayList<>(currentCellDao.getStringValueAsList()); 
 //    			sortedShelves = currentCellDao.getStringValueAsList().sort(null);
     			sortedShelves = sortedShelves.stream().sorted().collect(Collectors.toList());
-    			System.out.println("Unsorted : " + currentCellDao.getStringValue());
-    			System.out.println("Sorted : " + sortedShelves.toString());
-    			System.out.println();
-    			System.out.println();
+//    			System.out.println("Unsorted : " + currentCellDao.getStringValue());
+//    			System.out.println("Sorted : " + sortedShelves.toString());
     			
+    			StringBuilder sortedShelveAsStringBuffer = new StringBuilder();
+    			
+    			for(String shelf : sortedShelves) {
+//    				System.out.println(shelf.replaceAll("\\[", "").replaceAll("\\]", ""));
+    				String shelfTrimmedDown = shelf.replaceAll("\\[", "").replaceAll("\\]", "");
+
+    				sortedShelveAsStringBuffer.append(shelfTrimmedDown);
+    				sortedShelveAsStringBuffer.append(", ");
+    				
+    				System.out.println(sortedShelveAsStringBuffer);
+    			}
+        		this.workbook.getWorksheets().get(0).getCells().get(row, 16).setValue(sortedShelveAsStringBuffer.toString());
+    			
+//        		System.out.println("Sorted : " + sortedShelveAsStringBuffer.toString());
+        		System.out.println();
+        		System.out.println();
     		}
     	}
     	
-//    	saveWorkbook();
+    	saveWorkbook();
 	}
     
     
