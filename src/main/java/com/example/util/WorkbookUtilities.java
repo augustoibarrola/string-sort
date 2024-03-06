@@ -49,22 +49,18 @@ public class WorkbookUtilities {
 //    			System.out.println("Unsorted : " + currentCellDao.getStringValue());
 //    			System.out.println("Sorted : " + sortedShelves.toString());
     			
+    			/*
+    			 * - [ ]  Issue #11 created to eventually remove trailing comma from 
+    			 * 		sortedShelveAsStringBuffer before saving it into the workbook
+    			 */
     			StringBuilder sortedShelveAsStringBuffer = new StringBuilder();
-    			
     			for(String shelf : sortedShelves) {
-//    				System.out.println(shelf.replaceAll("\\[", "").replaceAll("\\]", ""));
     				String shelfTrimmedDown = shelf.replaceAll("\\[", "").replaceAll("\\]", "");
-
     				sortedShelveAsStringBuffer.append(shelfTrimmedDown);
     				sortedShelveAsStringBuffer.append(", ");
-    				
     				System.out.println(sortedShelveAsStringBuffer);
     			}
         		this.workbook.getWorksheets().get(0).getCells().get(row, 16).setValue(sortedShelveAsStringBuffer.toString());
-    			
-//        		System.out.println("Sorted : " + sortedShelveAsStringBuffer.toString());
-        		System.out.println();
-        		System.out.println();
     		}
     	}
     	
