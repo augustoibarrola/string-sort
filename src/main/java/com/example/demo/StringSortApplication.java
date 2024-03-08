@@ -16,7 +16,7 @@ public class StringSortApplication {
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(StringSortApplication.class, args);
 		
-		FileInputStream file = new FileInputStream(new File("src/main/resources/GOODREADS_DATA.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src/main/resources/GOODREADS_DATA_WED_MARCH_SIX_2024.xlsx"));
 		
 		Workbook workbook = new Workbook(file);
 		WorkbookDAO workbookDao = new WorkbookDAO(workbook);
